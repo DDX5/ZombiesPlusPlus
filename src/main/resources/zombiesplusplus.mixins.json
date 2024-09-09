@@ -1,0 +1,14 @@
+{
+  "required": true,
+  "minVersion": "0.8",
+  "package": "org.multicoder.zombiesplusplus.mixin",
+  "compatibilityLevel": "JAVA_21",
+  "mixins": [
+    "ZombieMixin"
+  ],
+  "client": [
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  }
+}

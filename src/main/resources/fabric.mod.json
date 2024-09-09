@@ -1,0 +1,27 @@
+{
+  "schemaVersion": 1,
+  "id": "zombiesplusplus",
+  "version": "${version}",
+  "name": "Zombies ++",
+  "description": "Turning Zombies up to 11 since 2024",
+  "authors": ["Multicoder"],
+  "contact": {
+    "repo": "https://github.com/DDX5/ZombiesPlusPlus/tree/fabric_1.21.1"
+  },
+  "license": "GPLv3",
+  "icon": "assets/zombiesplusplus/icon.png",
+  "environment": "*",
+  "entrypoints": {
+    "main": [
+      "org.multicoder.zombiesplusplus.ZombiesPlus"
+    ]
+  },
+  "mixins": [
+    "zombiesplusplus.mixins.json"
+  ],
+  "depends": {
+    "fabricloader": ">=${loader_version}",
+    "minecraft": "${minecraft_version}",
+    "fabric-api": "*"
+  }
+}
