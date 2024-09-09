@@ -1,0 +1,27 @@
+{
+  "schemaVersion": 1,
+  "id": "zombiesplusplus",
+  "version": "${version}",
+  "name": "ZombiesPlusPlus",
+  "description": "Turning Zombies Up To 11",
+  "authors": ["Multicoder"],
+  "contact": {
+    "repo": "https://github.com/DDX5/ZombiesPlusPlus"
+  },
+  "license": "GPL-3.0",
+  "icon": "assets/zombiesplusplus/icon.png",
+  "environment": "*",
+  "entrypoints": {
+    "main": [
+      "org.multicoder.zombiesplusplus.ZombiesPlusPlus"
+    ]
+  },
+  "mixins": [
+    "zombiesplusplus.mixins.json"
+  ],
+  "depends": {
+    "fabricloader": ">=${loader_version}",
+    "fabric": "*",
+    "minecraft": "${minecraft_version}"
+  }
+}
