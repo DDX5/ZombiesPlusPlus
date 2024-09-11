@@ -7,7 +7,7 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import org.multicoder.zombiesplusplus.ZombiesPlus;
 
-public class DestroyCropGoal extends Goal
+public class DestroyBocks extends Goal
 {
     private final MobEntity mob;
     private final World world;
@@ -15,26 +15,27 @@ public class DestroyCropGoal extends Goal
     private Path path;
     private final int XZDistanceMinus;
     private final int XZDistancePlus;
-    private final boolean ShouldDrop;
 
-    public DestroyCropGoal(MobEntity mob,int zx,int zx2, boolean drops)
+    public DestroyBocks(MobEntity mob, int zx, int zx2)
     {
         this.mob = mob;
         this.world = mob.getWorld();
         this.XZDistanceMinus = zx;
         this.XZDistancePlus = zx2;
-        this.ShouldDrop = drops;
     }
 
     @Override
-    public boolean canStart()
-    {
+    public boolean canStart() {
         BlockPos mobPos = this.mob.getBlockPos();
-        for (int x = XZDistanceMinus; x <= XZDistancePlus; x++) {
-            for (int y = -2; y <= 2; y++) {
-                for (int z = XZDistanceMinus; z <= XZDistancePlus; z++) {
+        for (int x = XZDistanceMinus; x <= XZDistancePlus; x++)
+        {
+            for (int y = -2; y <= 2; y++)
+            {
+                for (int z = XZDistanceMinus; z <= XZDistancePlus; z++)
+                {
                     BlockPos pos = mobPos.add(x, y, z);
-                    if (this.isCrop(pos)) {
+                    if (this.isTag(pos))
+                    {
                         this.targetPos = pos;
                         this.path = this.mob.getNavigation().findPathTo(pos, 1);
                         return this.path != null;
@@ -46,14 +47,12 @@ public class DestroyCropGoal extends Goal
     }
 
     @Override
-    public boolean shouldContinue()
-    {
-        return this.targetPos != null && this.isCrop(this.targetPos);
+    public boolean shouldContinue() {
+        return this.targetPos != null && this.isTag(this.targetPos);
     }
 
     @Override
-    public void start()
-    {
+    public void start() {
         this.mob.getNavigation().startMovingAlong(this.path, 1.1);
     }
 
@@ -66,13 +65,17 @@ public class DestroyCropGoal extends Goal
     @Override
     public void tick() {
         if (this.mob.squaredDistanceTo(this.targetPos.getX(), this.targetPos.getY(), this.targetPos.getZ()) < 2.0) {
-            this.world.breakBlock(this.targetPos, ShouldDrop);
+            this.world.breakBlock(this.targetPos, false);
             this.targetPos = null;
         }
     }
 
-    private boolean isCrop(BlockPos pos)
+    private boolean isTag(BlockPos pos)
     {
-        return this.world.getBlockState(pos).isIn(ZombiesPlus.CROPS_TAG);
+        return this.world.getBlockState(pos).isIn(ZombiesPlus.PLANKS_TAG)
+                || this.world.getBlockState(pos).isIn(ZombiesPlus.LOGS_TAG)
+                || this.world.getBlockState(pos).isIn(ZombiesPlus.FENCES_TAG)
+                || this.world.getBlockState(pos).isIn(ZombiesPlus.FENCE_GATES_TAG)
+                || this.world.getBlockState(pos).isIn(ZombiesPlus.DOORS_TAG);
     }
 }
