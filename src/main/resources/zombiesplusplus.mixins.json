@@ -4,7 +4,9 @@
   "package": "org.multicoder.zombiesplusplus.mixin",
   "compatibilityLevel": "JAVA_21",
   "mixins": [
-    "ZombieMixin"
+    "ZombieMixin",
+    "CreeperMixin",
+    "SkeletonMixin"
   ],
   "client": [
   ],

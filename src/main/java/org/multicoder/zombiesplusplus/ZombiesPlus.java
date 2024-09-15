@@ -9,6 +9,7 @@ import net.minecraft.registry.tag.TagKey;
 import net.minecraft.util.Identifier;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.multicoder.zombiesplusplus.config.ZombiesPlusConfig;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -30,35 +31,6 @@ public class ZombiesPlus implements ModInitializer
     @Override
     public void onInitialize()
     {
-        LOG.info("Fetching Configuration File");
-        String Dir = FabricLoaderImpl.INSTANCE.getGameDir().toAbsolutePath().toString();
-        File F = new File(Dir);
-        Properties config = new Properties();
-        if(F.exists())
-        {
-            LOG.info("File Exists, Reading Config");
-            try
-            {
-                config.load(new FileInputStream(F));
-                NIGHTMARE_MODE = Boolean.parseBoolean(config.getProperty("Nightmare-Mode"));
-            }
-            catch (Exception e)
-            {
-                LOG.error("Exception When Reading Config\nUsing Default Value.",e);
-            }
-        }
-        else
-        {
-            LOG.info("Creating New Config Using Default Values");
-            config.setProperty("Nightmare-Mode",Boolean.toString(false));
-            try
-            {
-                config.store(new FileOutputStream(F),"Zombies++ Config File");
-            }
-            catch (Exception e)
-            {
-                LOG.error("Exception When Writing Config\nAttempting Retry Next Time Game Is Loaded",e);
-            }
-        }
+        ZombiesPlusConfig.FetchConfig();
     }
 }
