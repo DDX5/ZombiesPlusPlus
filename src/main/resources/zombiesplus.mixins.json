@@ -3,9 +3,9 @@
   "minVersion": "0.8",
   "package": "org.multicoder.zombiesplus.mixin",
   "compatibilityLevel": "JAVA_8",
-  "refmap": "Zombies-Plus.refmap.json",
   "mixins": [
-    "ZombieMixin"
+    "ZombieMixin",
+    "SkeletonMixin"
   ],
   "client": [
   ],

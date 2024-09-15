@@ -11,6 +11,8 @@ import net.minecraft.world.entity.monster.Zombie;
 import org.multicoder.zombiesplus.ZombiesPlus;
 import org.multicoder.zombiesplus.ai.DestroyBlocks;
 import org.multicoder.zombiesplus.ai.DestroyCropGoal;
+import org.multicoder.zombiesplus.ai.ZWaveGoal;
+import org.multicoder.zombiesplus.config.ZombiesPlusConfig;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
@@ -24,7 +26,7 @@ public abstract class ZombieMixin
     private void Inject(CallbackInfo ci)
     {
         Zombie instance = (Zombie) (Object) this;
-        if(!ZombiesPlus.NIGHTMARE_MODE)
+        if(!ZombiesPlusConfig.NIGHTMARE_MODE)
         {
             instance.targetSelector.addGoal(3,new NearestAttackableTargetGoal<>(instance, Sheep.class,true));
             instance.targetSelector.addGoal(3,new NearestAttackableTargetGoal<>(instance, Cow.class,true));
