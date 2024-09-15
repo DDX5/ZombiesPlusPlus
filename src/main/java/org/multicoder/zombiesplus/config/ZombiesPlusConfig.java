@@ -13,6 +13,7 @@ public class ZombiesPlusConfig
 {
     public static boolean NIGHTMARE_MODE = false;
     public static boolean SKELETON_MODULE = false;
+    public static boolean CREEPER_MODULE = false;
     public static String Version = "1.2.0";
     public static Properties Config;
 
@@ -33,12 +34,14 @@ public class ZombiesPlusConfig
                     ZombiesPlus.LOG.warn("Old Config File Detected. Reading Old Config, Then Creating new");
                     NIGHTMARE_MODE = Boolean.parseBoolean(Objects.requireNonNullElse(Config.getProperty("Nightmare-Mode"),"false"));
                     SKELETON_MODULE = Boolean.parseBoolean(Objects.requireNonNullElse(Config.getProperty("Skeleton-Module"),"false"));
+                    CREEPER_MODULE = Boolean.parseBoolean(Objects.requireNonNullElse(Config.getProperty("Creeper-Module"),"false"));
                     Migrate(F);
                 }
                 else
                 {
                     NIGHTMARE_MODE = Boolean.parseBoolean(Objects.requireNonNullElse(Config.getProperty("Nightmare-Mode"),"false"));
                     SKELETON_MODULE = Boolean.parseBoolean(Objects.requireNonNullElse(Config.getProperty("Skeleton-Module"),"false"));
+                    CREEPER_MODULE = Boolean.parseBoolean(Objects.requireNonNullElse(Config.getProperty("Creeper-Module"),"false"));
                 }
             }
             catch (Exception e)
@@ -53,6 +56,7 @@ public class ZombiesPlusConfig
                 Config.clear();
                 Config.setProperty("Nightmare-Mode",Boolean.toString(NIGHTMARE_MODE));
                 Config.setProperty("Skeleton-Module",Boolean.toString(SKELETON_MODULE));
+                Config.setProperty("Creeper-Module",Boolean.toString(CREEPER_MODULE));
                 Config.setProperty("Version", Version);
                 Config.store(new FileOutputStream(F),"Zombies++ Config File");
             }

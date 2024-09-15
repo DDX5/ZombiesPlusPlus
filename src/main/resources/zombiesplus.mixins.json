@@ -5,7 +5,8 @@
   "compatibilityLevel": "JAVA_8",
   "mixins": [
     "ZombieMixin",
-    "SkeletonMixin"
+    "SkeletonMixin",
+    "CreeperMixin"
   ],
   "client": [
   ],
